@@ -1,0 +1,46 @@
+
+.sidebar-container {
+  background-color: #f8f9fa; /* Light background color */
+  color: #212529; /* Text color */
+  height: 100vh; /* Full height of the viewport */
+  width: 250px; /* Width of the sidebar */
+  position: fixed; /* Fixed position */
+  top: 0; /* Position from the top */
+  left: 0; /* Position from the left */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+  z-index: 1000; /* Ensure the sidebar appears above other elements */
+}
+
+/* Sidebar menu items */
+.sidebar-menu-item {
+  padding: 6px 20px; /* Padding for menu items */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  display: flex; /* Use flexbox layout */
+  align-items: center; /* Center items vertically */
+}
+
+/* Increase icon size */
+.sidebar-menu-item svg {
+  font-size: 20px; /* Increase icon size */
+  margin-right: 10px; /* Add space between icon and text */
+}
+
+/* Active menu item */
+.sidebar-menu-item.active {
+  background-color: #dee2e6; /* Background color for active menu item */
+}
+
+/* Submenu container */
+.submenu-container {
+  display: none;
+}
+
+
+.sidebar-menu-item:hover .submenu-container {
+  display: block;
+}
+
+/* Submenu items */
+.submenu-item {
+  padding: 10px 30px; /* Padding for submenu items */
+}
