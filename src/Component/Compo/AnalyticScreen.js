@@ -226,7 +226,7 @@ export default function AnalyticScreen() {
         width: "100%",
         overflow: "hidden",
         marginTop: 12,
-        backgroundColor: "D3D3D3",
+        backgroundColor: "#FBFBFB",
       }}
     >
       <Box sx={{ padding: 2 }}>
@@ -240,6 +240,9 @@ export default function AnalyticScreen() {
           Network Performance
         </Typography>
       </Box>
+      <div style={{ marginLeft: "15px", padding: 2, color: "gray" }}>
+        Display
+      </div>
 
       <Box
         sx={{
@@ -251,10 +254,9 @@ export default function AnalyticScreen() {
       >
         <Box
           sx={{
-            display: "flex",
             border: "1px solid gray",
-            justifyContent: "space-between",
-            p: 2,
+            padding: "10px 15px",
+            borderRadius: "10px",
           }}
         >
           <strong className="">{filteredRows.length}</strong>
@@ -276,7 +278,11 @@ export default function AnalyticScreen() {
                   key={column.id}
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
-                  sx={{ fontWeight: "bold", fontSize: 20 }}
+                  sx={{
+                    fontWeight: "bold",
+                    fontSize: 20,
+                    backgroundColor: "#FBFBFB",
+                  }}
                 >
                   {column.label}
                 </TableCell>
@@ -288,29 +294,35 @@ export default function AnalyticScreen() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, rowIndex) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={rowIndex}>
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={row.code}
+                    sx={{
+                      backgroundColor:
+                        rowIndex % 2 === 0 ? "white" : "lightgray",
+                    }}
+                  >
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {column.id === "Network" ? (
-                            <Box sx={{ display: "flex", gap: 0.5 }}>
-                              {value.map((color, colorIndex) => (
-                                <Box
-                                  key={colorIndex}
-                                  sx={{
-                                    width: 20,
-                                    height: 20,
+                          {Array.isArray(value)
+                            ? value.map((color, index) => (
+                                <span
+                                  key={index}
+                                  style={{
                                     backgroundColor: color,
+                                    display: "inline-block",
+                                    width: "20px",
+                                    height: "20px",
+                                    borderRadius: "50%",
+                                    marginRight: "5px",
                                   }}
-                                />
-                              ))}
-                            </Box>
-                          ) : column.format && typeof value === "number" ? (
-                            column.format(value)
-                          ) : (
-                            value
-                          )}
+                                ></span>
+                              ))
+                            : value}
                         </TableCell>
                       );
                     })}

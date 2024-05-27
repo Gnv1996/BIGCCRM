@@ -97,7 +97,7 @@ function LineGraph() {
 
   return (
     <div>
-      <LineChart width={350} height={150} data={data}>
+      <LineChart width={350} height={100} data={data}>
         <Line type="monotone" dataKey="uv" stroke="green" />
       </LineChart>
     </div>

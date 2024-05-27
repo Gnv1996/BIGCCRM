@@ -5,15 +5,12 @@ import { GoGraph } from "react-icons/go";
 import { BsDatabaseFillAdd } from "react-icons/bs";
 import { SiGoogledocs } from "react-icons/si";
 import { TbReport } from "react-icons/tb";
-import { MdLocalLibrary } from "react-icons/md";
-import { MdOutlineSettingsInputAntenna } from "react-icons/md";
-import { FaRegUserCircle } from "react-icons/fa";
-import { FaPowerOff } from "react-icons/fa6";
+import { MdLocalLibrary, MdOutlineSettingsInputAntenna } from "react-icons/md";
+import { FaRegUserCircle, FaPowerOff } from "react-icons/fa";
 import { GrSettingsOption } from "react-icons/gr";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./SidebarScreen.css";
-import { Link } from "@mui/material";
-// import { Link } from "react-router-dom";
+import { Link } from "@mui/material"; // Correct Link import
 
 function SidebarScreen() {
   return (
@@ -26,74 +23,139 @@ function SidebarScreen() {
           <Sidebar className="sidebar-container">
             <Menu>
               <MenuItem className="sidebar-menu-item">
-                <Link href="/">
-                  <RxDashboard />
-                  Dashboard
+                <Link
+                  href="/"
+                  className="sidebar-link"
+                  style={{ color: "inherit", textDecoration: "none" }}
+                >
+                  <RxDashboard size={20} /> Dashboard
                 </Link>
               </MenuItem>
 
               <MenuItem className="sidebar-menu-item">
-                {" "}
-                <Link href="/analytics">
-                  <GoGraph />
-                  Analytics{" "}
-                </Link>
-              </MenuItem>
-              <MenuItem className="sidebar-menu-item">
-                {" "}
-                <Link href="/myAssets">
-                  {" "}
-                  <BsDatabaseFillAdd />
-                  MyAssets
-                </Link>
-              </MenuItem>
-              <MenuItem className="sidebar-menu-item">
-                {" "}
-                <Link href="/monitoring">
-                  <MdOutlineSettingsInputAntenna />
-                  Monitoring
+                <Link
+                  href="/analytics"
+                  className="sidebar-link"
+                  style={{ color: "inherit", textDecoration: "none" }}
+                >
+                  <GoGraph size={20} /> Analytics
                 </Link>
               </MenuItem>
 
               <MenuItem className="sidebar-menu-item">
-                {" "}
-                <Link href="/ticketSummary">
-                  <SiGoogledocs />
-                  Tickets Summary
+                <Link
+                  href="/myAssets"
+                  className="sidebar-link"
+                  style={{ color: "inherit", textDecoration: "none" }}
+                >
+                  <BsDatabaseFillAdd size={20} /> MyAssets
                 </Link>
               </MenuItem>
+
               <MenuItem className="sidebar-menu-item">
-                {" "}
-                <TbReport />
-                Reports
-              </MenuItem>
-              <MenuItem className="sidebar-menu-item">
-                {" "}
-                <MdLocalLibrary />
-                Library
-              </MenuItem>
-              <MenuItem className="sidebar-menu-item">
-                {" "}
-                <GrSettingsOption />
-                Customization
+                <Link
+                  href="/monitoring"
+                  className="sidebar-link"
+                  style={{ color: "inherit", textDecoration: "none" }}
+                >
+                  <MdOutlineSettingsInputAntenna size={20} /> Monitoring
+                </Link>
               </MenuItem>
 
-              <SubMenu title="User" icon={<FaRegUserCircle />}>
-                User
-                <MenuItem className="sidebar-menu-item">
-                  {" "}
-                  <Link href="/addUser">Add Users </Link>
+              <MenuItem className="sidebar-menu-item">
+                <Link
+                  href="/ticketSummary"
+                  className="sidebar-link"
+                  style={{ color: "inherit", textDecoration: "none" }}
+                >
+                  <SiGoogledocs size={20} /> Tickets Summary
+                </Link>
+              </MenuItem>
+
+              <MenuItem className="sidebar-menu-item">
+                <TbReport size={20} /> Reports
+              </MenuItem>
+
+              <SubMenu
+                icon={<MdLocalLibrary size={20} />}
+                label="Library"
+                className="sidebar-menu-items"
+              >
+                <MenuItem className="submenu-item">Contact List</MenuItem>
+                <MenuItem className="submenu-item">Escalation Matrix</MenuItem>
+                <MenuItem className="submenu-item">Knowledgebase</MenuItem>
+              </SubMenu>
+
+              <SubMenu
+                icon={<GrSettingsOption size={20} />}
+                label="Customization"
+                className="sidebar-menu-items"
+              >
+                <MenuItem className="submenu-item">
+                  <Link
+                    href="/report_manager"
+                    className="sidebar-link"
+                    style={{ color: "inherit", textDecoration: "none" }}
+                  >
+                    Report Manager
+                  </Link>
                 </MenuItem>
-                <MenuItem className="sidebar-menu-item">
-                  {" "}
-                  <Link href="/department">Department </Link>
+                <MenuItem className="submenu-item">
+                  <Link
+                    href="/notification"
+                    className="sidebar-link"
+                    style={{ color: "inherit", textDecoration: "none" }}
+                  >
+                    Notification
+                  </Link>
+                </MenuItem>
+              </SubMenu>
+
+              <SubMenu
+                icon={<FaRegUserCircle size={20} />}
+                label="Users"
+                className="sidebar-menu-items"
+              >
+                <MenuItem className="submenu-item">
+                  <Link
+                    href="/addUser"
+                    className="sidebar-link"
+                    style={{ color: "inherit", textDecoration: "none" }}
+                  >
+                    Add Users
+                  </Link>
+                </MenuItem>
+                <MenuItem className="submenu-item">
+                  <Link
+                    href="/department"
+                    className="sidebar-link"
+                    style={{ color: "inherit", textDecoration: "none" }}
+                  >
+                    Departments
+                  </Link>
+                </MenuItem>
+                <MenuItem className="submenu-item">
+                  <Link
+                    href="/"
+                    className="sidebar-link"
+                    style={{ color: "inherit", textDecoration: "none" }}
+                  >
+                    Problem Code
+                  </Link>
+                </MenuItem>
+                <MenuItem className="submenu-item">
+                  <Link
+                    href="/"
+                    className="sidebar-link"
+                    style={{ color: "inherit", textDecoration: "none" }}
+                  >
+                    Service RFO
+                  </Link>
                 </MenuItem>
               </SubMenu>
 
               <MenuItem className="sidebar-menu-item">
-                {" "}
-                <FaPowerOff />
-                Sign Out
+                <FaPowerOff size={20} /> Sign Out
               </MenuItem>
             </Menu>
           </Sidebar>

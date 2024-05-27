@@ -17,7 +17,7 @@ function createData(depart_code, depart_name) {
 
 const rows = [
   createData("D01", "SUPPORT"),
-  createData("D02", "MONITRING"),
+  createData("D02", "MONITORING"),
   createData("D03", "ADMIN"),
   createData("D04", "PROJECT"),
   createData("D05", "FIELD TEAM"),
@@ -25,7 +25,7 @@ const rows = [
 
 export default function DepartmentScreen() {
   return (
-    <Box sx={{ padding: 2, marginTop: 20 }}>
+    <Box sx={{ padding: 2, marginTop: 12, backgroundColor: "#f5f5f5" }}>
       <Typography
         variant="h5"
         align="left"
@@ -42,6 +42,7 @@ export default function DepartmentScreen() {
         Add Department
       </Button>
 
+      <div style={{ padding: 2, color: "gray", marginTop: "5px" }}>Display</div>
       <Box
         sx={{
           display: "flex",
@@ -72,7 +73,7 @@ export default function DepartmentScreen() {
                 Department Code
               </TableCell>
               <TableCell
-                align="right"
+                align="center" // Aligns content to the center
                 style={{ fontWeight: "bold", fontSize: 20 }}
               >
                 Department Name
@@ -80,15 +81,19 @@ export default function DepartmentScreen() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {rows.map((row, index) => (
               <TableRow
                 key={row.depart_code}
+                className={index % 2 === 0 ? "even-row" : "odd-row"}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
+                <TableCell component="th" scope="row" align="left">
+                  {" "}
+                  {/* Aligns content to the left */}
                   {row.depart_code}
                 </TableCell>
-                <TableCell align="right">{row.depart_name}</TableCell>
+                <TableCell align="center">{row.depart_name}</TableCell>{" "}
+                {/* Aligns content to the center */}
               </TableRow>
             ))}
           </TableBody>

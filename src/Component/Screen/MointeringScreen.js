@@ -10,7 +10,6 @@ import TableRow from "@mui/material/TableRow";
 import TextField from "@mui/material/TextField";
 
 import Box from "@mui/material/Box";
-
 import Typography from "@mui/material/Typography";
 
 const columns = [
@@ -196,7 +195,14 @@ export default function MonitoringScreen() {
   );
 
   return (
-    <Paper style={{ width: "100%", overflow: "hidden", marginTop: "100px" }}>
+    <Paper
+      style={{
+        width: "100%",
+        overflow: "hidden",
+        marginTop: "100px",
+        backgroundColor: "#FBFBFB",
+      }}
+    >
       <Box sx={{ padding: 2 }}>
         <Typography
           variant="h5"
@@ -208,6 +214,9 @@ export default function MonitoringScreen() {
           Device Under Live Monitoring
         </Typography>
       </Box>
+      <div style={{ marginLeft: "15px", padding: 2, color: "gray" }}>
+        Display
+      </div>
 
       <Box
         sx={{
@@ -218,11 +227,9 @@ export default function MonitoringScreen() {
       >
         <Box
           sx={{
-            display: "flex",
             border: "1px solid gray",
-            justifyContent: "space-between",
-            borderRadius: "5px",
-            padding: 2,
+            padding: "10px 15px",
+            borderRadius: "10px",
           }}
         >
           <strong className="">{filteredRows.length}</strong>
@@ -235,11 +242,11 @@ export default function MonitoringScreen() {
           size="small"
         />
       </Box>
-      <TableContainer style={{ maxHeight: 440 }}>
+      <TableContainer style={{ maxHeight: 440, marginLeft: "10px" }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell>#</TableCell>
+              <TableCell>Id</TableCell>
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
@@ -248,6 +255,7 @@ export default function MonitoringScreen() {
                     minWidth: column.minWidth,
                     fontWeight: "bold",
                     fontSize: 18,
+                    backgroundColor: "#FBFBFB",
                   }}
                 >
                   {column.label}
@@ -260,7 +268,15 @@ export default function MonitoringScreen() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={row.Link_ID}
+                    sx={{
+                      backgroundColor: index % 2 === 0 ? "#FFFFFF" : "#F0F0F0",
+                    }}
+                  >
                     <TableCell>{index + 1}</TableCell>
                     {columns.map((column) => {
                       const value = row[column.id];

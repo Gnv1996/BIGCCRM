@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button"; // Import MUI Button component
+import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
 
 const columns = [
   {
@@ -36,7 +43,6 @@ const columns = [
   {
     field: "Link_BW",
     headerName: "Link_BW",
-    description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,
     align: "center",
@@ -45,7 +51,6 @@ const columns = [
   {
     field: "IP",
     headerName: "IP",
-    description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,
     align: "center",
@@ -54,24 +59,34 @@ const columns = [
   {
     field: "Status",
     headerName: "Status",
-    description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,
     align: "center",
     headerAlign: "center",
     renderCell: (params) => (
-      <input
-        type="text"
-        defaultValue={params.value}
+      <div
         style={{
-          borderRadius: 7,
-          backgroundColor: "#D3D3D3",
-          padding: "5px",
-          textAlign: "center",
-          border: "none",
-          cursor: "pointer",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
         }}
-      />
+      >
+        <input
+          type="text"
+          defaultValue={params.value}
+          style={{
+            borderRadius: 7,
+            backgroundColor: "#D3D3D3",
+            width: "100px",
+            padding: "5px",
+            textAlign: "center",
+            border: "none",
+            cursor: "pointer",
+          }}
+        />
+      </div>
     ),
   },
   {
@@ -83,20 +98,32 @@ const columns = [
     align: "center",
     headerAlign: "center",
     renderCell: (params) => (
-      <input
-        type="text"
-        defaultValue={params.value}
+      <div
         style={{
-          borderRadius: 7,
-          backgroundColor: "#D3D3D3",
-          padding: "5px",
-          textAlign: "center",
-          border: "none",
-          cursor: "pointer",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
         }}
-      />
+      >
+        <input
+          type="text"
+          defaultValue={params.value}
+          style={{
+            borderRadius: 7,
+            backgroundColor: "#D3D3D3",
+            width: "100px",
+            padding: "5px",
+            textAlign: "center",
+            border: "none",
+            cursor: "pointer",
+          }}
+        />
+      </div>
     ),
   },
+
   {
     field: "Edit",
     headerName: "Edit",
@@ -106,17 +133,18 @@ const columns = [
     align: "center",
     headerAlign: "center",
     renderCell: (params) => (
-      <button
+      <Button
+        variant="contained"
         style={{
-          borderRadius: 10,
           backgroundColor: "#FFC300",
+          color: "#000",
+          borderRadius: 10,
           padding: "5px 30px",
-          border: "none",
           cursor: "pointer",
         }}
       >
         Edit
-      </button>
+      </Button>
     ),
   },
   {
@@ -128,17 +156,18 @@ const columns = [
     align: "center",
     headerAlign: "center",
     renderCell: (params) => (
-      <button
+      <Button
+        variant="contained"
         style={{
-          borderRadius: 10,
           backgroundColor: "#FFC300",
+          color: "#000",
+          borderRadius: 10,
           padding: "5px 30px",
-          border: "none",
           cursor: "pointer",
         }}
       >
         View
-      </button>
+      </Button>
     ),
   },
 ];
@@ -236,25 +265,21 @@ const rows = [
   },
 ];
 
+const useStyles = styled(() => ({
+  odd: {
+    backgroundColor: "#ffffff", // white
+  },
+  even: {
+    backgroundColor: "#FBFBFB", // light gray
+  },
+}));
+
 export default function MyAssets() {
   const [filteredRows, setFilteredRows] = useState(rows);
   const [searchQuery, setSearchQuery] = useState("");
-
-  const handleFilterModelChange = (model) => {
-    let filteredRows = rows.filter((row) => {
-      let valid = true;
-      model.forEach((filter) => {
-        const value = row[filter.columnField];
-        if (value !== null && value !== undefined) {
-          valid =
-            valid &&
-            value.toString().toLowerCase().includes(filter.value.toLowerCase());
-        }
-      });
-      return valid;
-    });
-    setFilteredRows(filteredRows);
-  };
+  const [dropdownValue2, setDropdownValue2] = useState("");
+  const [dropdownValue1, setDropdownValue1] = useState("");
+  const classes = useStyles();
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -275,6 +300,14 @@ export default function MyAssets() {
     setFilteredRows(filteredRows);
   };
 
+  const handleDropdownChange1 = (event) => {
+    setDropdownValue1(event.target.value);
+  };
+
+  const handleDropdownChange2 = (event) => {
+    setDropdownValue2(event.target.value);
+  };
+
   return (
     <div
       style={{
@@ -282,10 +315,87 @@ export default function MyAssets() {
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        marginTop: "140px",
-        backgroundColor: "D3D3D3",
+        backgroundColor: "#FBFBFB",
       }}
     >
+      <div
+        style={{
+          width: "70%",
+          marginBottom: 10,
+          marginTop: "140px",
+          marginLeft: "18px",
+        }}
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={2}>
+            <FormControl fullWidth size="small">
+              <InputLabel>Select</InputLabel>
+              <Select
+                value={dropdownValue2}
+                label="Dropdown 2"
+                onChange={handleDropdownChange2}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Active</MenuItem>
+                <MenuItem value={20}>Passive</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={2}>
+            <TextField
+              label="Active All/Block All"
+              variant="outlined"
+              fullWidth
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={2}>
+            <FormControl fullWidth size="small">
+              <InputLabel>Select</InputLabel>
+              <Select
+                value={dropdownValue1}
+                label="Dropdown 1"
+                onChange={handleDropdownChange1}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Yes</MenuItem>
+                <MenuItem value={20}>No</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={2}>
+            <TextField
+              label="Ticket All Yes / Ticket All No"
+              variant="outlined"
+              fullWidth
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={2}>
+            <TextField
+              label="Add MyAssests"
+              variant="outlined"
+              fullWidth
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={2}>
+            <TextField
+              label="Export MyAssests"
+              variant="outlined"
+              fullWidth
+              size="small"
+            />
+          </Grid>
+        </Grid>
+      </div>
+      <div style={{ marginLeft: "15px", padding: 2, color: "gray" }}>
+        Display
+      </div>
       <div
         style={{
           display: "flex",
@@ -296,15 +406,13 @@ export default function MyAssets() {
       >
         <Box
           sx={{
-            display: "flex",
             border: "1px solid gray",
-            justifyContent: "space-between",
-            p: 2,
-            marginLeft: 7,
-            borderRadius: 5,
+            padding: "10px 15px",
+            borderRadius: "10px",
+            marginLeft: 2,
           }}
         >
-          <strong className="">{filteredRows.length}</strong>
+          <strong>{filteredRows.length}</strong>
         </Box>
         <TextField
           label="Search"
@@ -314,14 +422,16 @@ export default function MyAssets() {
           size="small"
         />
       </div>
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: 1, marginLeft: "10px" }}>
         <DataGrid
           rows={filteredRows}
           columns={columns}
           pageSize={5}
           pageSizeOptions={[5, 10]}
           checkboxSelection
-          onFilterModelChange={handleFilterModelChange}
+          getRowClassName={(params) =>
+            params.index % 2 === 0 ? classes.even : classes.odd
+          }
         />
       </div>
     </div>

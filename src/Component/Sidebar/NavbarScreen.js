@@ -1,10 +1,10 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FaRegCircleUser } from "react-icons/fa6";
 import { FaRegBell } from "react-icons/fa";
 import { MdMailOutline } from "react-icons/md";
 import { IoSearchSharp } from "react-icons/io5";
 import logo_bg from "../Assest/logo_bg.png";
+import profile from "../Assest/profile.png";
 
 function NavbarScreen() {
   return (
@@ -112,7 +112,7 @@ function NavbarScreen() {
                 <FaRegBell size={24} style={{ color: "gray" }} />{" "}
               </a>
               <a class="px-3" type="submit">
-                <FaRegCircleUser size={24} style={{ color: "gray" }} />{" "}
+                <img src={profile} alt="Image Loading" height={30} width={30} />
               </a>
             </form>
           </div>

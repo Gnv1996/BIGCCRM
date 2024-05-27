@@ -6,13 +6,13 @@ import Routing from "../src/Router/Routing";
 
 function App() {
   return (
-    <div className="container-fluid">
-      <div className="row">
+    <div className="container-fluid bg-light">
+      <div className="row bg-light">
         <NavbarScreen />
-        <div className="col-md-2 ">
+        <div className="col-md-2 bg-light ">
           <SidebarScreen />
         </div>
-        <div className="col-md-10">
+        <div className="col-md-10 bg-light">
           <Routing />
         </div>
       </div>

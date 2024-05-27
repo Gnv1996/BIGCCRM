@@ -7,6 +7,9 @@ import MonitoringScreen from "../Component/Screen/MointeringScreen";
 import TicketSummary from "../Component/Screen/TicketSummary";
 import AddUsersScreen from "../Component/Screen/AddUsersScreen";
 import DepartmentScreen from "../Component/Screen/DepartmentsScreen";
+import CustomizationScreen from "../Component/Screen/CustomizationScreen";
+import Notification from "../Component/Screen/Notification";
+import UserScreen from "../Component/Screen/UserScreen";
 
 function Routing() {
   return (
@@ -17,8 +20,13 @@ function Routing() {
         <Route path="/myAssets" element={<MyAssets />} />
         <Route path="/monitoring" element={<MonitoringScreen />} />
         <Route path="/ticketSummary" element={<TicketSummary />} />
-        <Route path="/addUser" element={<AddUsersScreen />} />
+
+        <Route path="/" element={<AddUsersScreen />} />
+        <Route path="/addUser" element={<UserScreen />} />
+
         <Route path="/department" element={<DepartmentScreen />} />
+        <Route path="/report_manager" element={<CustomizationScreen />} />
+        <Route path="/notification" element={<Notification />} />
       </Routes>
     </Router>
   );

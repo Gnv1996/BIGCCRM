@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useMediaQuery } from "@mui/material";
 
 const columns = [
   {
@@ -33,7 +34,6 @@ const columns = [
   {
     field: "Emp_id",
     headerName: "Emp-id",
-    description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,
     align: "center",
@@ -43,7 +43,6 @@ const columns = [
   {
     field: "User_Type",
     headerName: "User Type",
-    description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,
     align: "center",
@@ -53,7 +52,6 @@ const columns = [
   {
     field: "Live_Location",
     headerName: "Live Location",
-    description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,
     align: "center",
@@ -61,12 +59,20 @@ const columns = [
     headerClassName: "custom-header",
     renderCell: (params) => (
       <button
+        variant="contained"
         style={{
-          borderRadius: 10,
           backgroundColor: "#FFC300",
-          padding: "5px 30px",
-          border: "none",
-          cursor: "pointer",
+          margin: "10px",
+          width: "100px",
+          height: "40px",
+          textAlign: "center",
+          borderRadius: "7px",
+          display: "flex", // Set display to flex
+          justifyContent: "center", // Center content horizontally
+          alignItems: "center",
+          "&:hover": {
+            backgroundColor: "#FFA500",
+          },
         }}
       >
         Google Map
@@ -76,7 +82,6 @@ const columns = [
   {
     field: "Edit",
     headerName: "Edit",
-    description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,
     align: "center",
@@ -85,11 +90,18 @@ const columns = [
     renderCell: (params) => (
       <button
         style={{
-          borderRadius: 10,
           backgroundColor: "#FFC300",
-          padding: "5px 30px",
-          border: "none",
-          cursor: "pointer",
+          margin: "10px",
+          width: "100px",
+          height: "40px",
+          textAlign: "center",
+          borderRadius: "7px",
+          display: "flex", // Set display to flex
+          justifyContent: "center", // Center content horizontally
+          alignItems: "center",
+          "&:hover": {
+            backgroundColor: "#FFA500",
+          },
         }}
       >
         Edit
@@ -99,7 +111,6 @@ const columns = [
   {
     field: "Status",
     headerName: "Status",
-    description: "This column has a value getter and is not sortable.",
     sortable: false,
     width: 160,
     align: "center",
@@ -129,7 +140,6 @@ const rows = [
     mobile: "8802482398",
     Emp_id: "neeraj@fiberstory.in",
     User_Type: "Admin",
-
     Status: "ACTIVE",
   },
   {
@@ -138,7 +148,6 @@ const rows = [
     mobile: "8802482398",
     Emp_id: "neeraj@fiberstory.in",
     User_Type: "Admin",
-
     Status: "ACTIVE",
   },
   {
@@ -147,7 +156,6 @@ const rows = [
     mobile: "8802482398",
     Emp_id: "neeraj@fiberstory.in",
     User_Type: "Admin",
-
     Status: "ACTIVE",
   },
   {
@@ -156,7 +164,6 @@ const rows = [
     mobile: "8802482398",
     Emp_id: "neeraj@fiberstory.in",
     User_Type: "Admin",
-
     Status: "ACTIVE",
   },
   {
@@ -165,7 +172,6 @@ const rows = [
     mobile: "8802482398",
     Emp_id: "neeraj@fiberstory.in",
     User_Type: "Admin",
-
     Status: "ACTIVE",
   },
   {
@@ -174,7 +180,6 @@ const rows = [
     mobile: "8802482398",
     Emp_id: "neeraj@fiberstory.in",
     User_Type: "Admin",
-
     Status: "ACTIVE",
   },
   {
@@ -183,7 +188,6 @@ const rows = [
     mobile: "8802482398",
     Emp_id: "neeraj@fiberstory.in",
     User_Type: "Admin",
-
     Status: "ACTIVE",
   },
   {
@@ -192,7 +196,6 @@ const rows = [
     mobile: "8802482398",
     Emp_id: "neeraj@fiberstory.in",
     User_Type: "Admin",
-
     Status: "ACTIVE",
   },
   {
@@ -208,6 +211,7 @@ const rows = [
 export default function UserScreen() {
   const [filteredRows, setFilteredRows] = useState(rows);
   const [searchQuery, setSearchQuery] = useState("");
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   const handleFilterModelChange = (model) => {
     let filteredRows = rows.filter((row) => {
@@ -247,48 +251,49 @@ export default function UserScreen() {
   return (
     <div
       style={{
-        height: 400,
         width: "100%",
         display: "flex",
         flexDirection: "column",
+        padding: isSmallScreen ? "10px" : "30px",
+        marginTop: "100px",
       }}
     >
-      <Box sx={{ padding: 2 }}>
+      <Box sx={{ marginBottom: "10px" }}>
         <Typography
           variant="h5"
           align="left"
           gutterBottom
           sx={{ fontWeight: "bold", fontSize: 25 }}
         >
-          {" "}
           Users List
         </Typography>
-
         <Button
           variant="contained"
           color="primary"
-          sx={{ marginTop: 2, padding: "10px" }} // Adds margin on top of the button
+          sx={{ marginTop: 2, padding: "10px" }}
         >
           Add Users
         </Button>
       </Box>
-      <div
-        style={{
+      <div style={{ padding: 2, color: "gray" }}>Display</div>
+      <Box
+        sx={{
           display: "flex",
+          flexDirection: isSmallScreen ? "column" : "row",
           justifyContent: "space-between",
           alignItems: "center",
-          marginBottom: 10,
+          marginBottom: 2,
+          // marginLeft: "20px",
         }}
       >
         <Box
           sx={{
-            display: "flex",
             border: "1px solid gray",
-            justifyContent: "space-between",
-            p: 2,
+            padding: "10px 15px",
+            borderRadius: "10px",
           }}
         >
-          <strong className="">{filteredRows.length}</strong>
+          <strong>{filteredRows.length}</strong>
         </Box>
         <TextField
           label="Search"
@@ -296,9 +301,13 @@ export default function UserScreen() {
           value={searchQuery}
           onChange={handleSearchChange}
           size="small"
+          sx={{
+            width: isSmallScreen ? "100%" : "auto",
+            marginTop: isSmallScreen ? 2 : 0,
+          }}
         />
-      </div>
-      <div style={{ flex: 1 }}>
+      </Box>
+      <Box sx={{ flex: 1 }}>
         <DataGrid
           rows={filteredRows}
           columns={columns}
@@ -307,7 +316,7 @@ export default function UserScreen() {
           checkboxSelection
           onFilterModelChange={handleFilterModelChange}
         />
-      </div>
+      </Box>
     </div>
   );
 }

@@ -9,9 +9,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-
 import Box from "@mui/material/Box";
-
 import Typography from "@mui/material/Typography";
 
 const columns = [
@@ -291,7 +289,14 @@ export default function TicketSummary() {
   );
 
   return (
-    <Paper style={{ width: "100%", overflow: "hidden", marginTop: "120px" }}>
+    <Paper
+      style={{
+        width: "100%",
+        overflow: "hidden",
+        marginTop: "110px",
+        backgroundColor: "#FBFBFB",
+      }}
+    >
       <Box sx={{ padding: 2 }}>
         <Typography
           variant="h5"
@@ -311,6 +316,9 @@ export default function TicketSummary() {
           Export Tickets
         </Button>
       </Box>
+      <div style={{ marginLeft: "15px", padding: 2, color: "gray" }}>
+        Display
+      </div>
 
       <Box
         sx={{
@@ -321,11 +329,9 @@ export default function TicketSummary() {
       >
         <Box
           sx={{
-            display: "flex",
             border: "1px solid gray",
-            justifyContent: "space-between",
-            borderRadius: "5px",
-            padding: 2,
+            padding: "10px 15px",
+            borderRadius: "10px",
           }}
         >
           <strong className="">{filteredRows.length}</strong>
@@ -338,7 +344,7 @@ export default function TicketSummary() {
           size="small"
         />
       </Box>
-      <TableContainer style={{ maxHeight: 440 }}>
+      <TableContainer style={{ maxHeight: 440, marginLeft: "20px" }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -363,7 +369,15 @@ export default function TicketSummary() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={row.Ticket_No}
+                    sx={{
+                      backgroundColor: index % 2 === 0 ? "#f9f9f9" : "white", // alternate row color
+                    }}
+                  >
                     <TableCell>{index + 1}</TableCell>
                     {columns.map((column) => {
                       const value = row[column.id];
